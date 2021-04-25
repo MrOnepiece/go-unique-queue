@@ -31,7 +31,7 @@ func main() {
   // onFailed: when workFunc execute failed, the onFailed func will be executed
   // stopCh：the stop signal
 
-  q = queue.NewQueue(100, 5, workFunc, nil, nil, nil)
+  q := queue.NewQueue(100, 5, workFunc, nil, nil, nil)
   go q.Run()
   
   s := "hello world"
