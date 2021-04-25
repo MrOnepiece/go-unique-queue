@@ -34,8 +34,11 @@ func main() {
   q := queue.NewQueue(100, 5, workFunc, nil, nil, nil)
   go q.Run()
   
+  key := "test"
   s := "hello world"
-  q.Push(s)
+  q.Push(key, s)
+  time.Sleep(10 * time.Second)
+
 }
 
 ```

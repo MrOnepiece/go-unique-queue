@@ -65,9 +65,13 @@ func (q *Queue) run() {
 			}
 
 			if err := q.workFunc(obj); err != nil {
-				q.onFail(obj)
+				if q.onFail != nil {
+					q.onFail(obj)
+				}
 			} else {
-				q.onSuccess(obj)
+				if q.onSuccess != nil {
+					q.onSuccess(obj)
+				}
 			}
 			q.inProcessing.Delete(key)
 		}
