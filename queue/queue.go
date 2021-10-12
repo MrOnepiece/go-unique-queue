@@ -107,10 +107,11 @@ func (q *Queue) PushAfter(key string, value interface{}, after time.Duration) {
 }
 
 func (q *Queue) pop() (string, interface{}) {
-	q.mu.Lock()
-	defer q.mu.Unlock()
 
 	key := <-q.workQueue
+
+	q.mu.Lock()
+	defer q.mu.Unlock()
 	obj, _ := q.inQueue.LoadAndDelete(key)
 
 	return key, obj
